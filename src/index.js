@@ -13,7 +13,6 @@ async function Img() {
     const img = document
       .createRange()
       .createContextualFragment(`<img src=${data[i].url} alt=""/>`);
-    console.log(img);
     imgContainer.append(img);
   }
 }
