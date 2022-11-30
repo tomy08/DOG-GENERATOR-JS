@@ -1,0 +1,15 @@
+{
+  "name": "the-dog-api",
+  "version": "1.0.0",
+  "description": "This project is about the dog API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "API"
+  ],
+  "author": "Tomas Santa Cruz <tomasesantacruz@gmail.com>",
+  "license": "MIT"
+}
