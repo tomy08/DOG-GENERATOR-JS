@@ -1,5 +1,5 @@
 {
-  "name": "the-dog-api",
+  "name": "the-dog-generator",
   "version": "1.0.0",
   "description": "This project is about the dog API.",
   "main": "index.js",
