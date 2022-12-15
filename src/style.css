@@ -6,13 +6,24 @@
 body {
   background-color: #141625;
   background-repeat: no-repeat;
+  font-family: "Catamaran", sans-serif;
 }
 h1 {
-  font-family: "Catamaran", sans-serif;
   color: #f6f3eb;
   font-size: 30px;
   text-align: center;
   padding: 30px;
+}
+label {
+  color: #141625;
+  font-size: 24px;
+  text-align: center;
+}
+h3 {
+  color: #f6f3eb;
+  font-size: 24px;
+  text-align: center;
+  background-color: #242844;
 }
 section {
   display: flex;
@@ -20,45 +31,41 @@ section {
   justify-content: center;
   padding: 30px;
 }
-label {
-  font-family: "Catamaran", sans-serif;
-  color: #141625;
-  font-size: 24px;
-  text-align: center;
-}
+.container-buttons,
 .number-dogs {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+.number-dogs {
   background-color: #f6f3eb;
   width: 500px;
   height: 200px;
   border-radius: 10px;
 }
-input {
+input,
+#button-number {
   width: 200px;
   height: 30px;
+  margin: 10px;
+}
+input {
+  position: relative;
   text-align: center;
   font-size: 24px;
-  margin: 10px;
-  position: relative;
   top: 3px;
-  outline: none;
   border: none;
   background-color: #141625;
   color: #f6f3eb;
 }
-button {
-  width: 200px;
-  height: 30px;
-  margin: 10px;
+#button-number {
   border: none;
   color: #f6f3eb;
   background-color: #141625;
   font-size: 16px;
 }
-button:hover {
+#button-number:hover {
   -webkit-box-shadow: 6px 6px 5px -2px rgba(20, 22, 37, 1);
   -moz-box-shadow: 6px 6px 5px -2px rgba(20, 22, 37, 1);
   box-shadow: 6px 6px 5px -2px rgba(20, 22, 37, 1);
@@ -70,23 +77,30 @@ button:hover {
   grid-template-columns: auto auto;
 }
 img {
-  width: 125px;
-  height: 125px;
+  height: 100%;
+  width: 100%;
   border-radius: 20px;
-  margin: 5px;
+  padding: 10px;
 }
-.container-buttons {
-  display: flex;
-
-  flex-direction: column;
+.image-container {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  border-radius: 20px;
+}
+.like-button {
+  position: absolute;
+  margin: 10px;
+  top: 0;
+  right: 0;
+  font-size: 32px;
+  border: 0;
+  background: none;
+  cursor: pointer;
 }
 @media (min-width: 600px) {
   .container {
     grid-template-columns: auto auto auto;
-  }
-  img {
-    width: 150px;
-    height: 150px;
   }
   h1 {
     font-size: 56px;
@@ -99,7 +113,7 @@ img {
   .container {
     grid-template-columns: auto auto auto auto;
   }
-  img {
+  .image-container {
     width: 200px;
     height: 200px;
   }

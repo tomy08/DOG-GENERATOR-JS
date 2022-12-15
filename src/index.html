@@ -5,34 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOG GENERATOR</title>
-    <script src="./index.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" sizes="64x64" href="../img/icon.png" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <h1>The dog generator</h1>
+    <h3 id="error"></h3>
     <section>
       <div class="number-dogs">
         <label for="input">How many dogs do you want?</label>
         <div class="container-buttons">
-          <input
-            type="number"
-            name="input"
-            id="input"
-            min="1"
-            value="1"
-            max="100"
-          />
-          <button onclick="Img();">Create images</button>
+          <input type="number" id="input" min="1" value="1" max="100" />
+          <button id="button-number" onclick="randomImgs();">
+            Create images
+          </button>
         </div>
       </div>
     </section>
+    <span id="error"></span>
+    <h3>Random dogs</h3>
+    <section id="container-random" class="container"></section>
+    <h3>Favorites dogs</h3>
+    <section id="container-favourites" class="container"></section>
 
-    <section class="container"></section>
+    <script src="./index.js"></script>
   </body>
 </html>
