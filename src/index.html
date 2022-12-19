@@ -28,9 +28,19 @@
         </div>
       </div>
     </section>
-    <span id="error"></span>
     <h3>Random dogs</h3>
     <section id="container-random" class="container"></section>
+    <h3>Uploading dogs</h3>
+    <section>
+      <form id="uploadingForm">
+        <label for="file">Seleccionar archivo</label>
+        <input id="file" type="file" name="file" class="upload-input" />
+        <button type="button" onclick="uploadDogPhoto()" class="upload-input">
+          Upload dog photo
+        </button>
+      </form>
+    </section>
+
     <h3>Favorites dogs</h3>
     <section id="container-favourites" class="container"></section>
 

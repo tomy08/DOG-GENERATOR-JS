@@ -1,7 +1,7 @@
 // This code defines several functions that are used to interact with an API that provides dog images.
 
 // This constant holds the URL of the API endpoint for saving favorite images.
-const API_URL_FAVORITES = `https://api.thedogapi.com/v1/favourites?api_key=live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp`;
+const API_URL_FAVORITES = `https://api.thedogapi.com/v1/favourites`;
 
 // This constant holds a reference to an error message element on the page.
 const spanError = document.getElementById("error");
@@ -51,9 +51,7 @@ async function randomImgs() {
         saveFavourites(data[i].id);
 
         // Toggle the button text between a white heart and a red heart.
-        btn[i].innerText === "🤍"
-          ? (btn[i].innerText = "❤️")
-          : (btn[i].innerText = "🤍");
+        btn[i].innerText = btn[i].innerText === "🤍" ? "❤️" : "🤍";
 
         // Remove the event listener so that the user can't save the same image multiple times.
         btn[i].onclick = "";
@@ -69,6 +67,8 @@ async function saveFavourites(id) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "X-API-KEY":
+        "live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp",
     },
     body: JSON.stringify({
       image_id: id,
@@ -89,7 +89,12 @@ async function saveFavourites(id) {
 // This function fetches the user's saved favorite images from the API and displays them on the page.
 async function loadFavourites() {
   // Send a request to the API to fetch the user's saved favorite images.
-  const res = await fetch(API_URL_FAVORITES);
+  const res = await fetch(API_URL_FAVORITES, {
+    headers: {
+      "X-API-KEY":
+        "live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp",
+    },
+  });
   const data = await res.json();
 
   // If the request was not successful, display an error message.
@@ -137,12 +142,13 @@ async function loadFavourites() {
 // This function is used to delete a favourite image using an API call.
 async function deleteFavourites(id) {
   // Make a DELETE request to the API endpoint, passing the id of the image to be deleted.
-  const res = await fetch(
-    `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp`,
-    {
-      method: "DELETE",
-    }
-  );
+  const res = await fetch(`https://api.thedogapi.com/v1/favourites/${id}`, {
+    method: "DELETE",
+    headers: {
+      "X-API-KEY":
+        "live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp",
+    },
+  });
 
   // If the request was not successful, display an error message.
   if (res.status !== 200) {
@@ -151,6 +157,46 @@ async function deleteFavourites(id) {
   } else {
     // Reload the list of favourites.
     loadFavourites();
+  }
+}
+
+async function uploadDogPhoto() {
+  // Declare the API endpoint for uploading images
+  const API_URL_UPLOAD = `https://api.thedogapi.com/v1/images/upload`;
+
+  // Get the form element from the DOM
+  const form = document.getElementById("uploadingForm");
+
+  // Create a FormData object from the form element
+  const formData = new FormData(form);
+
+  // Make a POST request to the API endpoint with the form data
+  const res = await fetch(API_URL_UPLOAD, {
+    method: "POST",
+    headers: {
+      "X-API-KEY":
+        "live_c6lMhShvb9iIc1o1FDZZf51xDv6p0rfqrk5i0fkKIjKBOoRqFc81miJBsnVqMGBp",
+    },
+    body: formData,
+  });
+
+  // Convert the response to JSON
+  const data = await res.json();
+
+  // Log the file that was uploaded and the response from the server
+  console.log(formData.get("file"));
+  console.log(res);
+
+  // Reload the list of favorites
+  loadFavourites();
+
+  // If the request was not successful, display an error message.
+  if (res.status !== 201) {
+    spanError.innerText = `Something was wrong. ${res.status} error`;
+    console.error(`Something was wrong. ${res.status} error`);
+  } else {
+    // Save the new favorite
+    saveFavourites(data.id);
   }
 }
 
